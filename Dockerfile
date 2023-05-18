@@ -42,7 +42,7 @@ RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/repo
 RUN chmod a+x ~/repo
 RUN mv ~/repo /usr/local/bin/
 
-COPY startup.sh /startup.sh
-RUN chmod +x /startup.sh
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT [ "/startup.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
