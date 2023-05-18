@@ -1,0 +1,12 @@
+name: 'Yocto Build'
+description: 'a rule to build a yocto build in a container with all of the yocto dependancies'
+inputs:
+  yocto-target:  # id of input
+    description: 'what build name to give to bitbake'
+    required: true
+    default: 'core-image-minimal'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.yocto-target }}
