@@ -8,7 +8,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade
 
 # Yocto dependencies
 RUN apt-get -y install \
-    gawk wget git diffstat unzip texinfo gcc-multilib repo bmap-tools sudo curl \
+    gawk wget git diffstat unzip texinfo repo bmap-tools sudo curl \
     build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
     xz-utils debianutils iputils-ping libsdl1.2-dev xterm libyaml-dev libssl-dev 
 
