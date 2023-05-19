@@ -45,4 +45,21 @@ RUN mv ~/repo /usr/local/bin/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# Set arguments for non-root user
+ARG USER=yoctouser
+ARG UID=1001
+ARG GID=1001
+
+# Create non-root user, add to sudoers and set as owner of /workdir
+RUN addgroup --gid "$GID" "$USER" \
+    && adduser \
+    --disabled-password \
+    --gecos "" \
+    --ingroup "$USER" \
+    --uid "$UID" \
+    "$USER" 
+
+# Switch to non-root user
+USER $USER
+
 ENTRYPOINT [ "/entrypoint.sh" ]
