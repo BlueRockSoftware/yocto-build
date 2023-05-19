@@ -59,6 +59,8 @@ RUN addgroup --gid "$GID" "$USER" \
     --uid "$UID" \
     "$USER" 
 
+RUN chown -R $USER:$USER /github/workspace/
+
 # Switch to non-root user
 USER $USER
 
