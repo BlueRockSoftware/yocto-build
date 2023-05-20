@@ -45,8 +45,11 @@ RUN mv ~/repo /usr/local/bin/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+COPY build.sh /build.sh
+RUN chmod +x /build.sh
+
 # Set arguments for non-root user
-ARG USER=yoctouser
+ARG USER=yocto
 ARG UID=1001
 ARG GID=1001
 
@@ -59,9 +62,6 @@ RUN addgroup --gid "$GID" "$USER" \
     --uid "$UID" \
     "$USER" 
 
-RUN chown -R $USER:$USER /github/workspace/
-
-# Switch to non-root user
-USER $USER
+RUN chown yocto:yocto /build.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]

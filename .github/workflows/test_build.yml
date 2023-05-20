@@ -1,0 +1,43 @@
+name: Yocto Linux Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Configure Git
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.REPO_SYNC_TOKEN }}
+
+    - name: setup repo
+      uses: BlueRockSoftware/repo-setup@v1
+
+    - name: Initialize repo
+      run: |
+        repo init -u git@github.com:BlueRockSoftware/brs.git < /dev/null
+        repo sync
+
+    - name: Build Yocto Linux image
+      uses: ./
+      with:
+        yocto-build-config: builds/rpi/brsaudio
+        yocto-target: core-image-sato
+
+    - name: Upload Yocto Linux artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: yocto-linux-images
+        path: |
+          builds/rpi/brsaudio/tmp/deploy/images/raspberrypi4/core-image-sato-raspberrypi4.wic.bz2
+          builds/rpi/brsaudio/tmp/deploy/sdk/poky-glibc-x86_64-core-image-sato-cortexa7t2hf-neon-vfpv4-raspberrypi4-toolchain-4.0.1.sh
