@@ -8,4 +8,4 @@ chown -R yocto:yocto $GITHUB_WORKSPACE
 
 ls -la /
 
-sudo -u yocto /build.sh $1
+sudo -i -u yocto /build.sh $1 $GITHUB_WORKSPACE
