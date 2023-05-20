@@ -40,4 +40,4 @@ jobs:
         name: yocto-linux-images
         path: |
           builds/rpi/brsaudio/tmp/deploy/images/raspberrypi4/core-image-sato-raspberrypi4.wic.bz2
-          builds/rpi/brsaudio/tmp/deploy/sdk/poky-glibc-x86_64-core-image-sato-cortexa7t2hf-neon-vfpv4-raspberrypi4-toolchain-4.0.1.sh
+          builds/rpi/brsaudio/tmp/deploy/sdk/*.sh
