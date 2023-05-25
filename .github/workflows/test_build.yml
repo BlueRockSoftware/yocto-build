@@ -35,9 +35,8 @@ jobs:
         yocto-target: core-image-sato
 
     - name: Upload Yocto Linux artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: yocto-linux-images
         path: |
-          builds/rpi/brsaudio/tmp/deploy/images/raspberrypi4/core-image-sato-raspberrypi4.wic.bz2
-          builds/rpi/brsaudio/tmp/deploy/sdk/*.sh
+          builds/rpi/brsaudio/tmp/deploy/images/raspberrypi4/core-image-sato-raspberrypi4.*

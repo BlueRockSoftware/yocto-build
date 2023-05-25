@@ -1,15 +1,18 @@
 #!/bin/sh -l
 
 echo $GITHUB_WORKSPACE
-echo $1
+echo $1 $2
 
+orig_user=$(stat -c '%U' $GITHUB_WORKSPACE )
+orig_group=$(stat -c '%G' $GITHUB_WORKSPACE )
+
+# set all files to the user yocto so we can run the build as this user.
 chown -R yocto:yocto $GITHUB_WORKSPACE
 
-
-sudo -i -u yocto /build.sh $1 $GITHUB_WORKSPACE
-
-ls -la
-
-ls -la builds/rpi/brsaudio/tmp/deploy
+# run build script at the yocto user (created in the Dockerfile)
+sudo -i -u yocto /build.sh $1 $2 $GITHUB_WORKSPACE
 
 find builds/rpi/brsaudio/tmp/deploy 
+
+# set all files back to previous user
+chown -R $orig_user:$orig_group $GITHUB_WORKSPACE

@@ -5,8 +5,11 @@ inputs:
     description: 'what build name to give to bitbake'
     required: true
     default: 'core-image-minimal'
+  yocto-build-config: 
+    description: 'what profile you want to load the configuration for'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.yocto-target }}
+    - ${{ inputs.yocto-target }} ${{ inputs.yocto-build-config }}
