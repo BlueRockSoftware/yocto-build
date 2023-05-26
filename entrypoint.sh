@@ -15,7 +15,5 @@ chown -R yocto:yocto $GITHUB_WORKSPACE
 # run build script at the yocto user (created in the Dockerfile)
 sudo -i -u yocto /build.sh $1 $2 $GITHUB_WORKSPACE
 
-find builds/rpi/brsaudio/tmp/deploy 
-
 # set all files back to previous user
 chown -R $orig_user:$orig_group $GITHUB_WORKSPACE
