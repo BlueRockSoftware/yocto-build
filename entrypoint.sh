@@ -3,8 +3,8 @@
 echo $GITHUB_WORKSPACE
 echo $1 $2
 
-orig_user=$(stat -c '%U' $GITHUB_WORKSPACE )
-orig_group=$(stat -c '%G' $GITHUB_WORKSPACE )
+orig_user=$(stat -c '%u' $GITHUB_WORKSPACE )
+orig_group=$(stat -c '%g' $GITHUB_WORKSPACE )
 
 # set all files to the user yocto so we can run the build as this user.
 chown -R yocto:yocto $GITHUB_WORKSPACE
