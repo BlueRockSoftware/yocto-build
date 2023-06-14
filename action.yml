@@ -8,8 +8,11 @@ inputs:
   yocto-build-config: 
     description: 'what profile you want to load the configuration for'
     required: true
+  yocto-build-script: 
+    description: 'what script to run to set the environment'
+    default: 'sources/poky/oe-init-build-env'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.yocto-target }} ${{ inputs.yocto-build-config }}
+    - ${{ inputs.yocto-target }} ${{ inputs.yocto-build-script }} ${{ inputs.yocto-build-config }}
